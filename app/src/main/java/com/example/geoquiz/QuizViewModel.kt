@@ -50,6 +50,11 @@ class QuizViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel(
     fun moveToNext() {
         currentIndex = (currentIndex + 1) % questionBank.size
     }
+    public var answerIsTrue = false
+
+    public var answerShown = false
+
+
 
     fun moveToPrevious() {
         if (currentIndex == 0) {

@@ -17,7 +17,7 @@ class CheatActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCheatBinding
     private val quizViewModel: QuizViewModel by viewModels()
 
-    private var answerIsTrue = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,27 +25,24 @@ class CheatActivity : AppCompatActivity() {
         binding = ActivityCheatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        answerIsTrue = intent.getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false)
-
-
+        quizViewModel.answerIsTrue = intent.getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false)
         binding.showAnswerButton.setOnClickListener {
-            val answerText = when {
-                answerIsTrue -> R.string.true_button
-                else -> R.string.false_button
-            }
-            binding.answerTextView.setText(answerText)
-            setAnswerShownResult(true)
+            showAnswer()
         }
 
+        if (quizViewModel.answerShown) {
+            showAnswer()
+        }
     }
 
     private fun setAnswerShownResult(isAnswerShown: Boolean) {
-        val data = Intent().apply {
-            putExtra(EXTRA_ANSWER_SHOWN, isAnswerShown)
-        }
+        //val data = Intent().apply {
+        //    putExtra(EXTRA_ANSWER_SHOWN, isAnswerShown)
+        // }
         //quizViewModel.currentQuestionCheated = true
         //quizViewModel.setCheatToTrue()
-        setResult(Activity.RESULT_OK, data)
+        //setResult(Activity.RESULT_OK, data)*/
+        quizViewModel.answerShown = isAnswerShown
 
     }
 
@@ -55,5 +52,16 @@ class CheatActivity : AppCompatActivity() {
                 putExtra(EXTRA_ANSWER_IS_TRUE, answerIsTrue)
             }
         }
+    }
+
+    fun showAnswer() {
+        val answerText = when {
+            quizViewModel.answerIsTrue -> R.string.true_button
+            else -> R.string.false_button
+        }
+        binding.answerTextView.setText(answerText)
+
+        setAnswerShownResult(true)
+        quizViewModel.answerShown = true
     }
 }
