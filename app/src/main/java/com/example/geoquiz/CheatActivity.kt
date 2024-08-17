@@ -36,12 +36,12 @@ class CheatActivity : AppCompatActivity() {
     }
 
     private fun setAnswerShownResult(isAnswerShown: Boolean) {
-        //val data = Intent().apply {
-        //    putExtra(EXTRA_ANSWER_SHOWN, isAnswerShown)
-        // }
+        val data = Intent().apply {
+            putExtra(EXTRA_ANSWER_SHOWN, isAnswerShown)
+         }
         //quizViewModel.currentQuestionCheated = true
         //quizViewModel.setCheatToTrue()
-        //setResult(Activity.RESULT_OK, data)*/
+        setResult(Activity.RESULT_OK, data)
         quizViewModel.answerShown = isAnswerShown
 
     }

@@ -105,6 +105,7 @@ class MainActivity : AppCompatActivity() {
         val questionTextResId = quizViewModel.currentQuestionText
         binding.questionTextView.setText(questionTextResId)
         //hasCheated = quizViewModel.currentQuestionCheated
+        quizViewModel.isCheater = false
 
     }
 
