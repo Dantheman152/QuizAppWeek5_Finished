@@ -44,7 +44,7 @@ class CheatActivity : AppCompatActivity() {
             putExtra(EXTRA_ANSWER_SHOWN, isAnswerShown)
         }
         //quizViewModel.currentQuestionCheated = true
-        quizViewModel.setCheatToTrue()
+        //quizViewModel.setCheatToTrue()
         setResult(Activity.RESULT_OK, data)
 
     }

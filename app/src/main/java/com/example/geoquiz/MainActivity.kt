@@ -32,9 +32,10 @@ class MainActivity : AppCompatActivity() {
         // If the cheat activity worked properly
         if (result.resultCode == Activity.RESULT_OK) {
             // this code tells you if the person cheated <-
+            quizViewModel.isCheater =
             result.data?.getBooleanExtra(EXTRA_ANSWER_SHOWN, false) ?: false
 
-            quizViewModel.currentQuestionCheated
+            //quizViewModel.currentQuestionCheated
         }
     }
 
@@ -103,7 +104,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateQuestion() {
         val questionTextResId = quizViewModel.currentQuestionText
         binding.questionTextView.setText(questionTextResId)
-        hasCheated = quizViewModel.currentQuestionCheated
+        //hasCheated = quizViewModel.currentQuestionCheated
 
     }
 
@@ -111,7 +112,7 @@ class MainActivity : AppCompatActivity() {
         val correctAnswer = quizViewModel.currentQuestionAnswer
         // val hasCheated = result.data?.getBooleanExtra(EXTRA_ANSWER_SHOWN, false) ?: false
         val messageResId = when {
-            hasCheated -> R.string.judgment_snackbar
+            quizViewModel.isCheater -> R.string.judgment_snackbar
             userAnswer == correctAnswer -> R.string.correct_toast
             else -> R.string.incorrect_toast
         }
