@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
             quizViewModel.isCheater =
             result.data?.getBooleanExtra(EXTRA_ANSWER_SHOWN, false) ?: false
 
-            //quizViewModel.currentQuestionCheated
         }
     }
 
@@ -92,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.cheatButton.setOnClickListener {
-            // Start CheatActivity
+
             val answerIsTrue = quizViewModel.currentQuestionAnswer
             val intent = CheatActivity.newIntent(this@MainActivity, answerIsTrue)
             cheatLauncher.launch(intent)
@@ -104,14 +103,12 @@ class MainActivity : AppCompatActivity() {
     private fun updateQuestion() {
         val questionTextResId = quizViewModel.currentQuestionText
         binding.questionTextView.setText(questionTextResId)
-        //hasCheated = quizViewModel.currentQuestionCheated
         quizViewModel.isCheater = false
 
     }
 
     private fun checkAnswer(userAnswer: Boolean) {
         val correctAnswer = quizViewModel.currentQuestionAnswer
-        // val hasCheated = result.data?.getBooleanExtra(EXTRA_ANSWER_SHOWN, false) ?: false
         val messageResId = when {
             quizViewModel.isCheater -> R.string.judgment_snackbar
             userAnswer == correctAnswer -> R.string.correct_toast

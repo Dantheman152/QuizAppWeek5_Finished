@@ -9,7 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.geoquiz.databinding.ActivityCheatBinding
 
-//const val EXTRA_ANSWER_SHOWN = "com.example.geoquiz.answer_shown"
+
 var EXTRA_ANSWER_SHOWN = "com.example.geoquiz.answer_shown"
 private const val EXTRA_ANSWER_IS_TRUE = "com.example.geoquiz.answer_is_true"
 
@@ -39,8 +39,6 @@ class CheatActivity : AppCompatActivity() {
         val data = Intent().apply {
             putExtra(EXTRA_ANSWER_SHOWN, isAnswerShown)
          }
-        //quizViewModel.currentQuestionCheated = true
-        //quizViewModel.setCheatToTrue()
         setResult(Activity.RESULT_OK, data)
         quizViewModel.answerShown = isAnswerShown
 
